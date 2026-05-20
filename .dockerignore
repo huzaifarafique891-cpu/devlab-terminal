@@ -1,0 +1,17 @@
+node_modules
+app/node_modules
+npm-debug.log
+.git
+.gitignore
+.vscode
+.cursor
+README.md
+Jenkinsfile
+k8s
+*.yaml
+*.yml
+.env
+.env.*
+app/.env
+*.log
+.DS_Store

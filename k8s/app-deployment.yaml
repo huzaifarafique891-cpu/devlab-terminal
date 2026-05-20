@@ -1,0 +1,71 @@
+# Deployment: Node.js Express web application
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    app: my-webapp
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-webapp
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: my-webapp
+        tier: frontend
+    spec:
+      containers:
+        - name: my-webapp
+          image: yourdockerhubusername/my-webapp:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
+            - name: DB_HOST
+              value: mysql-service
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_DATABASE
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_PASSWORD
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 100m
+            limits:
+              memory: 256Mi
+              cpu: 500m
+          startupProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            failureThreshold: 30
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            periodSeconds: 10

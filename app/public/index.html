@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>my-webapp</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>my-webapp</h1>
+    <p>Simple website with MySQL database</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Add Note</h2>
+      <form id="note-form">
+        <textarea id="note-input" rows="3" placeholder="Write a note..." required></textarea>
+        <button type="submit">Save Note</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Saved Notes</h2>
+      <ul id="note-list">
+        <li class="message">Loading...</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>DevOps Project — Docker, Kubernetes, Jenkins</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

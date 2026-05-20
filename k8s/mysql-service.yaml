@@ -1,0 +1,17 @@
+# Service: exposes MySQL inside the cluster (ClusterIP)
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  labels:
+    app: my-webapp
+    tier: database
+spec:
+  type: ClusterIP
+  selector:
+    app: my-webapp
+    tier: database
+  ports:
+    - port: 3306
+      targetPort: 3306
+      protocol: TCP
