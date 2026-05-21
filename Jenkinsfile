@@ -8,7 +8,7 @@ pipeline {
         GIT_REPO = 'https://github.com/huzaifarafique891-cpu/devlab-terminal.git'
         GIT_BRANCH = 'main'
         DOCKERHUB_CREDENTIALS = 'dockerhub-credentials'
-        DOCKER_IMAGE = 'yourdockerhubusername/my-webapp'
+        DOCKER_IMAGE = huzaifaraf/devlab-terminal:v1
         DOCKER_TAG = "${BUILD_NUMBER}"
     }
 
