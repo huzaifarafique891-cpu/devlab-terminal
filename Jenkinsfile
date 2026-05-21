@@ -13,7 +13,7 @@ pipeline {
     }
 
     tools {
-        nodejs 'nodejs-20'
+       nodejs 'nodejs-20'
     }
 
     stages {
